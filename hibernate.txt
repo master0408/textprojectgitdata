@@ -1,0 +1,80 @@
+Hibernate is a high-performance Object/Relational persistence and query service, which is licensed under the open source GNU Lesser General Public License (LGPL) and is free to download. Hibernate not only takes care of the mapping from Java classes to database tables (and from Java data types to SQL data types), but also provides data query and retrieval facilities. This tutorial will teach you how to use Hibernate to develop your database based web applications in simple and easy steps.
+Audience
+
+This tutorial is designed for all those Java programmers who would like to understand the Hibernate framework and its API.
+Prerequisites
+
+We assume you have a good understanding of the Java programming language. A basic understanding of relational databases, JDBC, and SQL will be very helpful in understanding this tutorial.
+What is JDBC?
+
+JDBC stands for Java Database Connectivity. It provides a set of Java API for accessing the relational databases from Java program. These Java APIs enables Java programs to execute SQL statements and interact with any SQL compliant database.
+
+JDBC provides a flexible architecture to write a database independent application that can run on different platforms and interact with different DBMS without any modification.
+Pros and Cons of JDBC
+Pros of JDBC 	Cons of JDBC
+
+Clean and simple SQL processing
+
+Good performance with large data
+
+Very good for small applications
+
+Simple syntax so easy to learn
+	
+
+Complex if it is used in large projects
+
+Large programming overhead
+
+No encapsulation
+
+Hard to implement MVC concept
+
+Query is DBMS specific
+Why Object Relational Mapping (ORM)?
+
+When we work with an object-oriented system, there is a mismatch between the object model and the relational database. RDBMSs represent data in a tabular format whereas object-oriented languages, such as Java or C# represent it as an interconnected graph of objects.
+
+Consider the following Java Class with proper constructors and associated public function -
+
+public class Employee {
+   private int id;
+   private String first_name; 
+   private String last_name;   
+   private int salary;  
+
+   public Employee() {}
+   public Employee(String fname, String lname, int salary) {
+      this.first_name = fname;
+      this.last_name = lname;
+      this.salary = salary;
+   }
+   
+   public int getId() {
+      return id;
+   }
+   
+   public String getFirstName() {
+      return first_name;
+   }
+   
+   public String getLastName() {
+      return last_name;
+   }
+   
+   public int getSalary() {
+      return salary;
+   }
+}
+
+Consider the above objects are to be stored and retrieved into the following RDBMS table -
+
+create table EMPLOYEE (
+   id INT NOT NULL auto_increment,
+   first_name VARCHAR(20) default NULL,
+   last_name  VARCHAR(20) default NULL,
+   salary     INT  default NULL,
+   PRIMARY KEY (id)
+);
+
+First problem, what if we need to modify the design of our database after having developed a few pages or our application? Second, loading and storing objects in a relational database exposes us to the following five mismatch problems
