@@ -1,0 +1,43 @@
+Summary representations
+
+When you fetch a list of resources, the response includes a subset of the attributes for that resource. This is the "summary" representation of the resource. (Some attributes are computationally expensive for the API to provide. For performance reasons, the summary representation excludes those attributes. To obtain those attributes, fetch the "detailed" representation.)
+
+Example: When you get a list of repositories, you get the summary representation of each repository. Here, we fetch the list of repositories owned by the octokit organization:
+
+GET /orgs/octokit/repos
+
+Detailed representations
+
+When you fetch an individual resource, the response typically includes all attributes for that resource. This is the "detailed" representation of the resource. (Note that authorization sometimes influences the amount of detail included in the representation.)
+
+Example: When you get an individual repository, you get the detailed representation of the repository. Here, we fetch the octokit/octokit.rb repository:
+
+GET /repos/octokit/octokit.rb
+
+The documentation provides an example response for each API method. The example response illustrates all attributes that are returned by that method.
+Authentication
+
+There are three ways to authenticate through GitHub API v3. Requests that require authentication will return 404 Not Found, instead of 403 Forbidden, in some places. This is to prevent the accidental leakage of private repositories to unauthorized users.
+Basic authentication
+
+curl -u "username" https://api.github.com
+
+OAuth2 token (sent in a header)
+
+curl -H "Authorization: token OAUTH-TOKEN" https://api.github.com
+
+OAuth2 token (sent as a parameter)
+
+curl https://api.github.com/?access_token=OAUTH-TOKEN
+
+Read more about OAuth2. Note that OAuth2 tokens can be acquired programmatically, for applications that are not websites.
+OAuth2 key/secret
+
+curl 'https://api.github.com/users/whatever?client_id=xxxx&client_secret=yyyy'
+
+This should only be used in server to server scenarios. Don't leak your OAuth application's client secret to your users.
+
+Read more about unauthenticated rate limiting.
+Failed login limit
+
+Authenticating with invalid credentials will return 401 Unauthorized:
