@@ -37,44 +37,7 @@ When we work with an object-oriented system, there is a mismatch between the obj
 
 Consider the following Java Class with proper constructors and associated public function -
 
-public class Employee {
-   private int id;
-   private String first_name; 
-   private String last_name;   
-   private int salary;  
-
-   public Employee() {}
-   public Employee(String fname, String lname, int salary) {
-      this.first_name = fname;
-      this.last_name = lname;
-      this.salary = salary;
-   }
-   
-   public int getId() {
-      return id;
-   }
-   
-   public String getFirstName() {
-      return first_name;
-   }
-   
-   public String getLastName() {
-      return last_name;
-   }
-   
-   public int getSalary() {
-      return salary;
-   }
-}
 
 Consider the above objects are to be stored and retrieved into the following RDBMS table -
-
-create table EMPLOYEE (
-   id INT NOT NULL auto_increment,
-   first_name VARCHAR(20) default NULL,
-   last_name  VARCHAR(20) default NULL,
-   salary     INT  default NULL,
-   PRIMARY KEY (id)
-);
 
 First problem, what if we need to modify the design of our database after having developed a few pages or our application? Second, loading and storing objects in a relational database exposes us to the following five mismatch problems
